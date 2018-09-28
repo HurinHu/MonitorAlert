@@ -35,12 +35,12 @@ public class Data {
 	}
 	
 	public double[] getList() {
-		String[] data = this.content.split("/n");
+		String[] data = this.content.split("\n");
 		double[] result = {0,0};
 		for(int i=0; i<data.length; i++){
 			if(this.getTradeDay().equals(data[i].split(",")[0])){
 				result[0] = Double.parseDouble(data[i].split(",")[1]);
-				result[1] = Double.parseDouble(data[i].split(",")[1]);
+				result[1] = Double.parseDouble(data[i].split(",")[2]);
 			}
 		}
 		return result;
@@ -53,7 +53,7 @@ public class Data {
 	}
 	
 	private String getTradeDay(){
-		SimpleDateFormat dateformat = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 		return dateformat.format(this.yesterday());
 	}
 }

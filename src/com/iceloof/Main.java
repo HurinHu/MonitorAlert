@@ -8,7 +8,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		SimpleDateFormat hour = new SimpleDateFormat("HH");
-		SimpleDateFormat minute = new SimpleDateFormat("mm");
 		String file = "monitor.txt";
 		String ticker = "";
 		if(args.length == 1){
@@ -23,15 +22,26 @@ public class Main {
 		data.read();
 		double[] dataList = data.getList();
 		double price = 0;
-		while((Integer.parseInt(hour.format(new Date()))>=0 && Integer.parseInt(minute.format(new Date()))>=0) && (Integer.parseInt(hour.format(new Date())) <= 8 && Integer.parseInt(minute.format(new Date()))>=0)){
+		int count = 0;
+		while((Integer.parseInt(hour.format(new Date()))>=0) && (Integer.parseInt(hour.format(new Date())) < 8)){
 			price = monitor.getPrice();
-			if(price <= dataList[0]){
-				alert.down();
-			}else if(price >= dataList[1]){
+			if(price >= dataList[0] && count == 0){
+				System.out.println(price+"   "+dataList[0]);
 				alert.up();
+				count ++;
+			}else if(price <= dataList[1] && count == 0){
+				System.out.println(price+"   "+dataList[1]);
+				alert.down();
+				count ++;
 			}
 			try{
 				TimeUnit.SECONDS.sleep(15);
+				if(count != 0){
+					count ++;
+				}
+				if(count == 240){
+					count = 0;
+				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

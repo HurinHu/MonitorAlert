@@ -23,7 +23,7 @@ public class Main {
 		double[] dataList = data.getList();
 		double price = 0;
 		int count = 0;
-		while((Integer.parseInt(hour.format(new Date()))>=0) && (Integer.parseInt(hour.format(new Date())) < 8)){
+		while((Integer.parseInt(hour.format(new Date()))>=0) && (Integer.parseInt(hour.format(new Date())) < 9)){
 			price = monitor.getPrice();
 			if(price >= dataList[0] && count == 0){
 				System.out.println(price+"   "+dataList[0]);

@@ -35,7 +35,7 @@ public class Main {
 				count ++;
 			}
 			try{
-				TimeUnit.SECONDS.sleep(15);
+				TimeUnit.SECONDS.sleep(30);
 				if(count != 0){
 					count ++;
 				}

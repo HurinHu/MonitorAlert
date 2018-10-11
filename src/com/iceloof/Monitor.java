@@ -37,7 +37,10 @@ public class Monitor {
 	
 	public double getPrice(){
 		String data = this.getQuote();
-		double price = Double.parseDouble(data);
+		double price = 0;
+		if(!data.equals("")){
+			price = Double.parseDouble(data);
+		}
 		return price;
 	}
 }

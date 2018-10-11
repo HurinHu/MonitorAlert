@@ -22,26 +22,29 @@ public class Main {
 		data.read();
 		double[] dataList = data.getList();
 		double price = 0;
-		int count = 0;
 		while((Integer.parseInt(hour.format(new Date()))>=0) && (Integer.parseInt(hour.format(new Date())) < 9)){
 			price = monitor.getPrice();
-			if(price >= dataList[0] && count == 0){
+			if(price >= dataList[0]){
 				System.out.println(price+"   "+dataList[0]);
 				alert.up();
-				count ++;
-			}else if(price <= dataList[1] && count == 0){
+				try {
+					TimeUnit.MINUTES.sleep(60);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else if(price <= dataList[1]){
 				System.out.println(price+"   "+dataList[1]);
 				alert.down();
-				count ++;
+				try {
+					TimeUnit.MINUTES.sleep(60);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			try{
 				TimeUnit.SECONDS.sleep(30);
-				if(count != 0){
-					count ++;
-				}
-				if(count == 240){
-					count = 0;
-				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
